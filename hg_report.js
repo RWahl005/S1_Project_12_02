@@ -22,24 +22,34 @@ document.getElementsByTagName("article")[0].innerHTML = gameReport;
 // The variable for the sum of the ratings.
 var ratingsSum = 0;
 
+// Grabs the number of ratings within the array ratingsCount
 var ratingsCount = ratings.length;
 
+// A for loop that loops through the ratings and adds them togeather.
 for (var i = 0; i < ratings.length; i++) {
     ratingsSum += ratings[i];
 }
 
+// Gets the average rating by using the average formula. (sum / count)
 var ratingsAvg = ratingsSum / ratingsCount;
 
+// Makes the html for the aside column. Variables are used to update the html.
 var ratingReport = `<h1>Customer Reviews</h1><h2> ${ratingsAvg} out of 5 stars (${ratingsCount} reviews)</h2>`;
 
+// A for loop to loop through the most recent 3 reviews.
 for (var i = 0; i <= 2; i++) {
+    // Adds the ratings html content to the ratingReport content.
     ratingReport += `<div class='review'> <h1>${ratingTitles[i]}</h1>
     <table> <tr><th>By</th><td>${ratingAuthors[i]}</td></tr> <tr><th>Review Date</th><td>${ratingDates[i]}</td></tr> <tr><th>Rating</th><td>`;
 
+    //Nested for loop that loops through the number of stars the game was given.
     for (var x = 1; x <= ratings[i]; x++) {
+        // Ads the stars to the html.
         ratingReport += "<img src='hg_star.png' />";
     }
+    // Closes the aside html code.
     ratingReport += "</td></tr></table>" + ratingSummaries[i] + "</div>";
 }
 
+// Applies the html code in the ratingReport variable.
 document.getElementsByTagName("aside")[0].innerHTML = ratingReport;
